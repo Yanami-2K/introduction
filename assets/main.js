@@ -43,6 +43,33 @@
         '<g class="c-card"><rect class="k" stroke-width="3" x="22" y="102" width="26" height="40" rx="5" fill="#3b2f4a"/><rect x="26" y="107" width="18" height="28" rx="2" fill="#fffdf9"/><path d="M30 126V117M35 122V112M40 116V110" stroke-width="4" stroke-linecap="round" stroke="#5fd3bc"/><path d="M35 122V126" stroke-width="4" stroke-linecap="round" stroke="#ff9db5"/></g>' +
         '<circle class="k" cx="50" cy="132" r="8" fill="#ffe3ec"/>',
       fx: star(30, 46, '#ffd36e', 's1') + star(172, 38, '#9fe3ff', 's2') + star(174, 124, '#ff9db5', 's3') },
+    // 奶龙-ish cat (original): chubby cream-yellow little dragon, tiny horns, belly
+    nailong: { body: BODY_ROUND, fill: '#ffe48a', face: eyesBig + '<path ' + S + 'd="M90 124 Q100 136 110 124 Z" fill="#ff9db5"/>',
+      extra: '<ellipse class="k" stroke-width="3" cx="100" cy="146" rx="24" ry="12" fill="#fff6d6"/>' +
+        '<path class="k" stroke-width="3" d="M88 74 l4 -14 6 13z M112 74 l-4 -14 -6 13z" fill="#fff6d6"/>' +
+        '<path class="k" stroke-width="3" d="M142 96 l10 4 -9 6 9 6 -9 6" fill="#ffd36e"/>',
+      fx: star(30, 50, '#ffd36e', 's1') + star(172, 128, '#ffd36e', 's3') },
+    // gugugaga (original): cat in a penguin onesie, white face patch, orange beak + feet
+    gugu: { body: BODY_POINTY, fill: '#4a3f5e',
+      face: '<path class="k" stroke-width="3" d="M66 116 Q66 88 100 88 Q134 88 134 116 Q134 150 100 152 Q66 150 66 116Z" fill="#fffdf9"/>' +
+        '<g class="c-eyes"><g class="c-eye"><circle cx="86" cy="110" r="6" fill="' + INK + '"/><circle cx="88" cy="107" r="2" fill="#fff"/></g><g class="c-eye"><circle cx="114" cy="110" r="6" fill="' + INK + '"/><circle cx="116" cy="107" r="2" fill="#fff"/></g></g>' +
+        '<path class="k" stroke-width="3" d="M90 121 Q100 115 110 121 L100 132 Z" fill="#ffb347"/>',
+      extra: '<ellipse class="k" stroke-width="3" cx="84" cy="164" rx="10" ry="5" fill="#ffb347"/><ellipse class="k" stroke-width="3" cx="116" cy="164" rx="10" ry="5" fill="#ffb347"/>',
+      fx: star(30, 50, '#9fe3ff', 's1') + star(172, 40, '#fffdf9', 's2') },
+    // Furby-ish cat (original): fluffy purple, ear tufts, big ringed eyes, little beak, pink belly
+    furby: { body: BODY_POINTY, fill: '#d9c6ff',
+      face: '<g class="c-eyes"><g class="c-eye"><circle class="k" stroke-width="3" cx="83" cy="108" r="12" fill="#fff"/><circle cx="83" cy="109" r="7" fill="' + INK + '"/><circle cx="86" cy="105" r="2.6" fill="#fff"/></g><g class="c-eye"><circle class="k" stroke-width="3" cx="117" cy="108" r="12" fill="#fff"/><circle cx="117" cy="109" r="7" fill="' + INK + '"/><circle cx="120" cy="105" r="2.6" fill="#fff"/></g></g>' +
+        '<path class="k" stroke-width="3" d="M93 124 Q100 120 107 124 L100 134 Z" fill="#ffd36e"/>',
+      extra: '<ellipse class="k" stroke-width="3" cx="100" cy="148" rx="20" ry="10" fill="#ffd1e3"/>' +
+        '<path class="k" stroke-width="3" d="M66 58 q-8 -14 -2 -24 q4 10 10 8 q-2 10 -8 16z M134 58 q8 -14 2 -24 q-4 10 -10 8 q2 10 8 16z" fill="#ff9db5"/>' +
+        '<path d="M62 90 l6 4 M60 100 l7 2 M138 90 l-6 4 M140 100 l-7 2" stroke="' + INK + '" stroke-width="2.5" stroke-linecap="round"/>',
+      fx: star(30, 50, '#ff9db5', 's1') + star(172, 128, '#c9b8ff', 's3') },
+    // big chubby fish cat (original): blue fish costume, dorsal fin, scales, side fin
+    fish: { body: BODY_WIDE, fill: '#9fd8ff', face: eyesBig + '<ellipse ' + S + 'stroke-width="3" cx="100" cy="128" rx="6" ry="5" fill="#ff9db5"/>',
+      extra: '<path class="k" stroke-width="3" d="M80 74 Q100 40 122 74 Q110 66 100 70 Q90 66 80 74Z" fill="#c9e9ff"/>' +
+        '<path d="M70 146 q6 -6 12 0 M88 146 q6 -6 12 0 M106 146 q6 -6 12 0 M124 146 q6 -6 12 0 M79 136 q6 -6 12 0 M97 136 q6 -6 12 0 M115 136 q6 -6 12 0" stroke="' + INK + '" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".55"/>' +
+        '<path class="k" stroke-width="3" d="M56 118 q-16 2 -18 16 q12 2 20 -6z" fill="#c9e9ff"/>',
+      fx: '<circle class="c-bub b0" cx="70" cy="170" r="5" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b1" cx="100" cy="170" r="7" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b2" cx="130" cy="170" r="4" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/>' },
     // phantom thief cat (original): domino mask, tailcoat, red bow + glove, tiny top hat, calling card
     kaito: { body: BODY_POINTY, fill: '#fffaf4',
       face: '<path class="k c-mask" fill-rule="evenodd" fill="#2e2440" d="M58 100 Q66 92 84 96 Q100 101 116 96 Q134 92 142 100 L153 91 Q151 113 136 119 Q118 124 100 116 Q82 124 64 119 Q49 113 47 91 Z M74 109 a10 8.5 0 1 0 20 0 a10 8.5 0 1 0 -20 0 Z M106 109 a10 8.5 0 1 0 20 0 a10 8.5 0 1 0 -20 0 Z"/>' +
@@ -137,7 +164,7 @@
     graspSub: 'A visual workflow for multiple coding agents · open source',
     buddyAria: 'Back to top',
     lines: ['Hi there~', "I'm cocofhu's little ghost", 'Heading out on a heist tonight~', 'Poke me again?', 'Working on SkillHub~', 'Whoosh—'],
-    tf: ['Back to me~ Working on SkillHub!', 'coco 卡酷一', 'All in! All in!', 'Transform! Night-sky Cat', 'Transform! Sakura Cat', 'Transform! Soda Cat', 'Transform! Sleepy Cat'],
+    tf: ['Back to me~ Working on SkillHub!', 'coco 卡酷一', 'All in! All in!', 'Transform! Night-sky Cat', 'Transform! Sakura Cat', 'Transform! Soda Cat', 'Transform! Sleepy Cat', 'Transform! Nailong Cat', 'Gugu gaga!', 'Transform! Furby Cat', 'Transform! Big Chubby Fish Cat'],
     sections: { recent: "What I'm up to~", about: 'Say hi!' },
     langAria: 'Switch language / 切换语言'
   };
@@ -145,7 +172,7 @@
     title: document.title,
     desc: (document.querySelector('meta[name="description"]') || {}).content || '',
     lines: ['你好呀~', '我是 cocofhu 的小幽灵', '今晚也要出动哦', '再戳一下？', '在做 SkillHub 哦', '咻——'],
-    tf: ['变回来啦~ 在做 SkillHub 哦', 'coco 卡酷一', '梭哈 梭哈', '变身！夜空猫', '变身！樱花猫', '变身！汽水猫', '变身！困困猫'],
+    tf: ['变回来啦~ 在做 SkillHub 哦', 'coco 卡酷一', '梭哈 梭哈', '变身！夜空猫', '变身！樱花猫', '变身！汽水猫', '变身！困困猫', '变身！奶龙猫', '咕咕嘎嘎！', '变身！菲比猫', '变身！大肥鱼猫'],
     sections: { recent: '最近在做~', about: '打个招呼！' },
     langAria: '切换语言 / Switch language'
   };
@@ -359,7 +386,7 @@
   var li = 0;
   if (say) say.textContent = tr().lines[0];
   /* click = magical-girl transform: ghost cat cycles through forms and back */
-  var FORMS = ['yume', 'kaito', 'kurumi', 'yozora', 'sakura', 'soda', 'nemu'];
+  var FORMS = ['yume', 'kaito', 'kurumi', 'yozora', 'sakura', 'soda', 'nemu', 'nailong', 'gugu', 'furby', 'fish'];
   var fi = 0, sayKey = null, busy = false;
   onLangChange.push(function (T) { if (say) say.textContent = sayKey === null ? T.lines[li] : T.tf[sayKey]; });
   if (heroCat) {
