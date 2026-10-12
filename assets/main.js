@@ -414,10 +414,8 @@
       if (busy) return;
       busy = true;
       heroCat.classList.remove('tf-go'); void heroCat.offsetWidth; heroCat.classList.add('tf-go');
-      setTimeout(smearOn, 170);
-      setTimeout(function () { swap(); smearSwap(); }, 500);
-      setTimeout(smearOff, 780);
-      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 1130);
+      setTimeout(swap, 400);
+      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 900);
     });
   }
   function burst(host, n) {
