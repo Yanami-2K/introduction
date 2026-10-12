@@ -137,6 +137,7 @@
     graspSub: 'A visual workflow for multiple coding agents · open source',
     buddyAria: 'Back to top',
     lines: ['Hi there~', "I'm cocofhu's little ghost", 'Heading out on a heist tonight~', 'Poke me again?', 'Working on SkillHub~', 'Whoosh—'],
+    tf: ['Back to me~ Working on SkillHub!', 'coco 卡酷一', 'All in! All in!', 'Transform! Night-sky Cat', 'Transform! Sakura Cat', 'Transform! Soda Cat', 'Transform! Sleepy Cat'],
     sections: { recent: "What I'm up to~", about: 'Say hi!' },
     langAria: 'Switch language / 切换语言'
   };
@@ -144,6 +145,7 @@
     title: document.title,
     desc: (document.querySelector('meta[name="description"]') || {}).content || '',
     lines: ['你好呀~', '我是 cocofhu 的小幽灵', '今晚也要出动哦', '再戳一下？', '在做 SkillHub 哦', '咻——'],
+    tf: ['变回来啦~ 在做 SkillHub 哦', 'coco 卡酷一', '梭哈 梭哈', '变身！夜空猫', '变身！樱花猫', '变身！汽水猫', '变身！困困猫'],
     sections: { recent: '最近在做~', about: '打个招呼！' },
     langAria: '切换语言 / Switch language'
   };
@@ -356,25 +358,66 @@
   var say = document.getElementById('heroSay');
   var li = 0;
   if (say) say.textContent = tr().lines[0];
-  onLangChange.push(function (T) { if (say) say.textContent = T.lines[li]; });
+  /* click = magical-girl transform: ghost cat cycles through forms and back */
+  var FORMS = ['yume', 'kaito', 'kurumi', 'yozora', 'sakura', 'soda', 'nemu'];
+  var fi = 0, sayKey = null, busy = false;
+  onLangChange.push(function (T) { if (say) say.textContent = sayKey === null ? T.lines[li] : T.tf[sayKey]; });
   if (heroCat) {
     var eyes = heroCat.querySelector('.c-eyes');
-    if (!reduce && eyes) {
+    if (!reduce) {
       window.addEventListener('pointermove', function (e) {
+        if (!eyes) return;
         var r = heroCat.getBoundingClientRect();
         var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height * 0.5);
         var d = Math.max(1, Math.hypot(dx, dy)), k = Math.min(1, d / 400);
         eyes.style.transform = 'translate(' + (dx / d * 6 * k).toFixed(2) + 'px,' + (dy / d * 5 * k).toFixed(2) + 'px)';
       }, { passive: true });
     }
-    heroCat.addEventListener('click', function (e) {
-      var lines = tr().lines;
-      li = (li + 1) % lines.length;
-      say.textContent = lines[li];
-      heroCat.classList.remove('boing'); say.classList.remove('pop-say');
-      void heroCat.offsetWidth;
-      heroCat.classList.add('boing'); say.classList.add('pop-say');
-      if (!reduce) burst(heroCat, 9);
+    var slot = heroCat.querySelector('[data-cat]');
+    var stage = heroCat.parentNode;
+    function swap() {
+      fi = (fi + 1) % FORMS.length;
+      slot.setAttribute('data-cat', FORMS[fi]);
+      slot.innerHTML = catSVG(FORMS[fi], false);
+      var ne = slot.querySelector('.c-eyes');
+      if (ne && eyes) ne.style.transform = eyes.style.transform;
+      eyes = ne;
+      sayKey = fi; say.textContent = tr().tf[fi];
+      say.classList.remove('pop-say'); void say.offsetWidth; say.classList.add('pop-say');
+    }
+    var smearBox = null;
+    function smearOn() {
+      if (!document.getElementById('tfHBlur')) {
+        var d = document.createElement('div');
+        d.innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="tfHBlur" x="-60%" y="-10%" width="220%" height="120%"><feGaussianBlur stdDeviation="9 0"/></filter></svg>';
+        document.body.appendChild(d.firstChild);
+      }
+      smearBox = document.createElement('span');
+      smearBox.className = 'tf-smear';
+      var h = '';
+      for (var k = 0; k < 4; k++) h += '<span class="tf-ghost" style="--k:' + k + '">' + slot.innerHTML + '</span>';
+      h += '<i class="tf-streak" style="--y:30%;--k:0"></i><i class="tf-streak" style="--y:52%;--k:1"></i><i class="tf-streak" style="--y:72%;--k:2"></i>';
+      smearBox.innerHTML = h;
+      heroCat.appendChild(smearBox);
+      heroCat.classList.add('tf-fast');
+    }
+    function smearSwap() {
+      if (smearBox) Array.prototype.forEach.call(smearBox.querySelectorAll('.tf-ghost'), function (g) { g.innerHTML = slot.innerHTML; });
+    }
+    function smearOff() {
+      heroCat.classList.remove('tf-fast');
+      if (smearBox) { smearBox.remove(); smearBox = null; }
+    }
+    heroCat.addEventListener('click', function () {
+      heroCat.classList.add('tf');
+      if (reduce) { swap(); return; }
+      if (busy) return;
+      busy = true;
+      heroCat.classList.remove('tf-go'); void heroCat.offsetWidth; heroCat.classList.add('tf-go');
+      setTimeout(smearOn, 170);
+      setTimeout(function () { swap(); smearSwap(); }, 500);
+      setTimeout(smearOff, 780);
+      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 1130);
     });
   }
   function burst(host, n) {
