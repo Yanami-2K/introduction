@@ -473,23 +473,41 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
 @keyframes win-body{0%,18%{transform:scaleY(0)}32%,78%{transform:scaleY(1)}86%,100%{transform:scaleY(0)}}
 @keyframes ok{0%,55%{transform:scale(1)}60%{transform:scale(.82)}66%,100%{transform:scale(1)}}
 
-/* scene: AGENT — 收到！ + sub-agents with progress */
-.scene--agent{background-color:#effbf7}
-.ack{position:absolute;left:128px;top:34px;font:800 16px/1 var(--f-zh);background:var(--paper);border:3px solid var(--ink);border-radius:16px;padding:9px 12px;box-shadow:3px 3px 0 var(--ink);transform-origin:0 100%;animation:ack 4s var(--pop) infinite}
-@keyframes ack{0%,2%{transform:scale(0) rotate(-15deg)}10%,88%{transform:scale(1) rotate(-4deg)}96%,100%{transform:scale(0)}}
-.tasks{position:absolute;right:18px;top:50%;transform:translateY(-38%);display:grid;gap:10px;width:44%}
-.task{display:flex;align-items:center;gap:8px;animation:task-in 4s var(--pop) infinite}
-.task:nth-child(2){animation-delay:.18s}.task:nth-child(3){animation-delay:.36s}
-.task .mini{flex:none;width:30px;height:30px}
-.task .mini .c-float{animation-duration:1.2s}
-.task i{flex:1;height:14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--paper);overflow:hidden}
-.task i b{display:block;height:100%;background:var(--purple);transform-origin:0 50%;animation:prog 4s var(--io) infinite}
-.task:nth-child(2) i b{background:var(--hot);animation-name:prog2}
-.task:nth-child(3) i b{background:var(--sun);animation-name:prog3}
-@keyframes task-in{0%,8%{opacity:0;transform:translateX(30px) scale(.5)}18%,90%{opacity:1;transform:none}97%,100%{opacity:0;transform:scale(.6)}}
-@keyframes prog{0%,24%{transform:scaleX(0)}70%,100%{transform:scaleX(1)}}
-@keyframes prog2{0%,30%{transform:scaleX(0)}60%{transform:scaleX(.45)}80%,100%{transform:scaleX(.8)}}
-@keyframes prog3{0%,34%{transform:scaleX(0)}75%,100%{transform:scaleX(.6)}}
+/* scene: HARDWARE — ゆめねこ driving an RC car */
+.scene--rc{background-color:#effbf7}
+.rc-track{position:absolute;left:150px;right:16px;top:30px;bottom:22px;border:3px dashed rgba(59,47,74,.22);border-radius:999px}
+.rc-cone{position:absolute;left:62%;top:46%;width:34px;height:36px;margin:-18px 0 0 -17px;transform-origin:50% 100%;animation:cone 3.6s var(--pop) infinite}
+.rc-cone svg{display:block;width:100%;height:100%;overflow:visible}
+@keyframes cone{0%,40%,60%,100%{transform:none}46%{transform:rotate(-12deg)}52%{transform:rotate(8deg)}}
+.rc-car{position:absolute;left:0;top:0;width:76px;height:50px;margin:-25px 0 0 -38px;z-index:2;animation:rc-drive 3.6s linear infinite}
+.rc-body{display:block;width:100%;height:100%;animation:rc-bob .3s ease-in-out infinite alternate}
+.rc-body svg{display:block;width:100%;height:100%;overflow:visible}
+.rc-wheel{transform-box:fill-box;transform-origin:center;animation:rc-bob .15s ease-in-out infinite alternate-reverse}
+@keyframes rc-bob{from{transform:translateY(0)}to{transform:translateY(-2.5px)}}
+/* oval lap around the cone: x = 58%..92%, y = 26%..78%; car faces right by default */
+@keyframes rc-drive{
+  0%{left:56%;top:78%;transform:rotate(0) scaleX(1)}
+  22%{left:86%;top:76%;transform:rotate(-6deg) scaleX(1)}
+  32%{left:90%;top:52%;transform:rotate(-70deg) scaleX(1)}
+  42%{left:84%;top:26%;transform:rotate(-14deg) scaleX(-1)}
+  52%{left:66%;top:30%;transform:rotate(8deg) scaleX(-1)}
+  62%{left:50%;top:24%;transform:rotate(-4deg) scaleX(-1)}
+  74%{left:44%;top:48%;transform:rotate(60deg) scaleX(-1)}
+  84%{left:46%;top:76%;transform:rotate(10deg) scaleX(1)}
+  100%{left:56%;top:78%;transform:rotate(0) scaleX(1)}}
+.rc-puff{position:absolute;left:4px;top:30px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2.5px solid var(--ink);opacity:0;animation:rc-puff .9s ease-out infinite}
+.rc-puff:nth-of-type(2){animation-delay:.3s}.rc-puff:nth-of-type(3){animation-delay:.6s}
+@keyframes rc-puff{0%{opacity:.9;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(-22px,-8px) scale(1.2)}}
+.rc-cat{z-index:3;transform-origin:50% 90%;animation:rc-lean 3.6s ease-in-out infinite}
+@keyframes rc-lean{0%,18%{transform:rotate(0)}30%,40%{transform:rotate(-9deg)}52%,62%{transform:rotate(4deg)}74%,80%{transform:rotate(9deg)}92%,100%{transform:rotate(0)}}
+.rc-remote{position:absolute;left:112px;bottom:30px;z-index:4;width:40px;height:28px;background:var(--lav);border:3px solid var(--ink);border-radius:10px;box-shadow:2px 2px 0 var(--ink);transform-origin:20% 100%;animation:rc-lean 3.6s ease-in-out infinite}
+.rc-remote::before{content:"";position:absolute;left:24px;top:-24px;width:3px;height:22px;background:var(--ink);border-radius:2px;transform:rotate(14deg);transform-origin:50% 100%}
+.rc-remote b{position:absolute;left:28px;top:-30px;width:9px;height:9px;border-radius:50%;background:var(--sun);border:2px solid var(--ink);animation:rc-blink .45s steps(2) infinite}
+.rc-remote i{position:absolute;top:7px;left:6px;width:9px;height:9px;border-radius:50%;background:var(--purple);border:2px solid var(--ink)}
+.rc-remote i+i{left:20px;background:var(--pink2)}
+@keyframes rc-blink{50%{background:var(--paper)}}
+.rc-zoom{position:absolute;left:128px;top:14px;z-index:4;font:700 15px/1 var(--f-en);letter-spacing:.06em;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:7px 10px;box-shadow:3px 3px 0 var(--ink);transform-origin:0 100%;transform:scale(0);animation:rc-zoom 3.6s var(--pop) infinite}
+@keyframes rc-zoom{0%,24%{transform:scale(0) rotate(-15deg)}30%,46%{transform:scale(1) rotate(-5deg)}52%,100%{transform:scale(0)}}
 
 /* scene: GAME — HP hearts, CLEAR! stamp, gamepad */
 .scene--game{background-color:#fffaea}
@@ -528,7 +546,21 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
 /* ---------- about ---------- */
 .about{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(20px,3vw,36px);align-items:stretch}
 .about-box{position:relative;min-height:300px;background:var(--paper);border:var(--bw) solid var(--ink);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:34px 30px}
-.mystery{margin:0;font:800 clamp(26px,3vw,36px)/1.3 var(--f-zh)}
+.kq{margin:0;max-width:100%;position:relative;z-index:2}
+.kq-bubble{position:relative;margin:0;background:var(--pink);border:var(--bw) solid var(--ink);border-radius:24px;padding:16px 22px 18px;box-shadow:4px 4px 0 var(--ink);transform:rotate(-1.5deg)}
+.kq-bubble::after{content:"";position:absolute;right:42px;bottom:-14px;width:22px;height:22px;background:var(--pink);border:solid var(--ink);border-width:0 var(--bw) var(--bw) 0;transform:rotate(35deg) skewX(-12deg)}
+.mystery{margin:0;font:800 clamp(22px,2.2vw,28px)/1.35 var(--f-en),var(--f-zh)}
+.kq-by{margin:14px 0 0 6px;font:700 14px/1 var(--f-en),var(--f-zh);letter-spacing:.06em;color:var(--purple)}
+.kq-chart{position:absolute;right:calc(12% + 160px);bottom:22px;width:150px;height:90px;opacity:.9}
+.kq-tag{position:absolute;right:calc(12% + 170px);bottom:120px;z-index:5;transform:rotate(-6deg);background:var(--sun);border:var(--bw) solid var(--ink);border-radius:12px;padding:5px 8px;box-shadow:3px 3px 0 var(--ink);font-size:14px;line-height:1.4;white-space:nowrap}
+.kq-tag .mark{background:none;font:700 14px/1.4 var(--f-en),var(--f-zh);color:var(--ink)}
+.kq-tag .bubble{transform-origin:50% 100%}
+.kq-grid{stroke:rgba(59,47,74,.12);stroke-width:2;stroke-dasharray:4 5}
+.kq-c path{stroke:var(--ink);stroke-width:2.5;stroke-linecap:round}
+.kq-c rect{stroke:var(--ink);stroke-width:2.5;rx:2}
+.kq-c .up{fill:#5fd3bc}.kq-c .dn{fill:var(--pink2)}
+.kq-c{transform-box:fill-box;transform-origin:50% 100%;animation:kq-c 4.2s var(--pop) infinite;animation-delay:calc(var(--i)*.14s)}
+@keyframes kq-c{0%,4%{opacity:0;transform:scaleY(.2)}14%,82%{opacity:1;transform:none}94%,100%{opacity:0;transform:scaleY(.6)}}
 .mystery-sub{margin:8px 0 0;font:600 14px/1.6 var(--f-en),var(--f-zh);letter-spacing:.06em;opacity:.65}
 .peek{position:absolute;right:12%;bottom:-6px;width:180px;height:180px;transform:translateY(80%);transition:transform .8s var(--spring)}
 .peek.up{transform:translateY(22%)}
@@ -598,8 +630,10 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
   .band{padding:70px 16px 80px}
   .scene{height:200px}
   .cameo{width:124px;height:124px;left:4px}
-  .ack{left:58px;top:14px;font-size:14px}
-  .tasks{transform:translateY(-22%)}
+  .rc-track{left:112px;top:20px;bottom:16px}
+  .rc-remote{left:84px;bottom:22px;scale:.85}
+  .rc-zoom{left:96px;top:10px;font-size:13px}
+  .rc-car{width:62px;height:41px;margin:-20px 0 0 -31px}
   .raster{grid-template-columns:repeat(7,15px);margin-top:-60px;right:12px}
   .raster i{width:15px;height:15px;border-radius:4px}
   .cube{width:50px;height:50px;right:52%;top:22px}
@@ -614,6 +648,14 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
   .pad{right:16px;bottom:14px;transform-origin:center;scale:.85}
   .paper{height:120px;margin-top:-60px;right:16px}
   .peek{width:150px;height:150px;right:6%}
+  .kq{max-width:100%}
+  .kq-tag{right:auto;left:22px;bottom:100px}
+  .kq-tag .bubble{left:-8px;transform:translateY(8px) scale(.6);transform-origin:20% 100%}
+  .kq-tag .mark:hover .bubble,.kq-tag .mark.open .bubble,.kq-tag .mark:focus-visible .bubble{transform:none}
+  .kq-tag .bubble::after{left:34px}
+  .kq-bubble{padding:12px 16px 14px}
+  .kq-chart{right:auto;left:18px;bottom:16px;width:120px;height:72px}
+  .about-box{min-height:330px}
   .buddy{width:64px;height:64px;right:12px;bottom:12px}
   .buddy-say{right:52px}
   .live{left:18px}
@@ -628,7 +670,9 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
   .say{opacity:1;transform:rotate(-3deg)}
   .win-bar,.win-body{transform:none}
   .ln{stroke-dashoffset:0}
-  .task,.hp i,.clear,.ack{opacity:1}
+  .hp i,.clear{opacity:1}
+  .rc-car{left:78%;top:72%}
+  .rc-zoom{transform:rotate(-5deg)}
   .hp i{transform:none}
   .tape-track{transform:none}
   .thief-smear{display:none}

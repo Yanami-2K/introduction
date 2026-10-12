@@ -35,6 +35,14 @@
       extra: '<g class="c-swing"><path class="k" d="M160 96 L160 112" fill="none"/><ellipse class="k" cx="160" cy="124" rx="14" ry="12" fill="#ff9a3c"/><path d="M154 122 l3 -3 3 3 M162 122 l3 -3 3 3 M154 128 q6 4 12 0" stroke="' + INK + '" stroke-width="2" fill="none"/></g>', fx: '' },
     soda: { body: BODY_POINTY, fill: '#b8f3e6', face: eyesDot + mouthO, extra: '',
       fx: '<circle class="c-bub b0" cx="70" cy="170" r="5" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b1" cx="100" cy="170" r="7" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b2" cx="130" cy="170" r="4" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/>' },
+    // FX Kurumi cat (original take): pink bob + fringe, pink eyes, coin hair clip, phone with a candle chart
+    kurumi: { body: BODY_POINTY, fill: '#ffe3ec',
+      face: '<g class="c-eyes"><g class="c-eye"><ellipse cx="84" cy="112" rx="7" ry="8.5" fill="' + INK + '"/><ellipse cx="84" cy="114" rx="4" ry="4.5" fill="#ff9db5"/><circle cx="86.5" cy="108" r="2.4" fill="#fff"/></g><g class="c-eye"><ellipse cx="116" cy="112" rx="7" ry="8.5" fill="' + INK + '"/><ellipse cx="116" cy="114" rx="4" ry="4.5" fill="#ff9db5"/><circle cx="118.5" cy="108" r="2.4" fill="#fff"/></g></g>' + mouthW,
+      extra: '<path class="k" fill="#ff9db5" d="M56 122 Q48 86 70 72 Q100 60 130 72 Q152 86 144 122 Q137 110 136 96 Q124 102 112 92 Q102 104 92 94 Q80 102 72 92 Q66 104 56 122Z"/>' +
+        '<g class="c-swing"><circle class="k" stroke-width="3" cx="130" cy="84" r="9" fill="#ffd36e"/><text x="130" y="88.5" text-anchor="middle" font-size="12" font-weight="800" fill="' + INK + '">¥</text></g>' +
+        '<g class="c-card"><rect class="k" stroke-width="3" x="22" y="102" width="26" height="40" rx="5" fill="#3b2f4a"/><rect x="26" y="107" width="18" height="28" rx="2" fill="#fffdf9"/><path d="M30 126V117M35 122V112M40 116V110" stroke-width="4" stroke-linecap="round" stroke="#5fd3bc"/><path d="M35 122V126" stroke-width="4" stroke-linecap="round" stroke="#ff9db5"/></g>' +
+        '<circle class="k" cx="50" cy="132" r="8" fill="#ffe3ec"/>',
+      fx: star(30, 46, '#ffd36e', 's1') + star(172, 38, '#9fe3ff', 's2') + star(174, 124, '#ff9db5', 's3') },
     // phantom thief cat (original): domino mask, tailcoat, red bow + glove, tiny top hat, calling card
     kaito: { body: BODY_POINTY, fill: '#fffaf4',
       face: '<path class="k c-mask" fill-rule="evenodd" fill="#2e2440" d="M58 100 Q66 92 84 96 Q100 101 116 96 Q134 92 142 100 L153 91 Q151 113 136 119 Q118 124 100 116 Q82 124 64 119 Q49 113 47 91 Z M74 109 a10 8.5 0 1 0 20 0 a10 8.5 0 1 0 -20 0 Z M106 109 a10 8.5 0 1 0 20 0 a10 8.5 0 1 0 -20 0 Z"/>' +
@@ -69,7 +77,7 @@
   }
   var EN = {
     title: 'cocofhu — my little corner of the web',
-    desc: "cocofhu's homepage. Born in '99, INTP, backend engineer. Programmer by day, Phantom Thief by night.",
+    desc: "cocofhu's homepage. Born in '99, INTP, backend engineer. Genius programmer by day, Phantom Thieves of Hearts by night.",
     skip: 'Skip to content',
     logoAria: 'cocofhu home',
     navAria: 'Page navigation',
@@ -84,22 +92,22 @@
       ' — I want to make fun, actually useful things that help people, and keep getting better along the way.',
     catAria: 'Poke the little ghost cat',
     hint: 'TAP ME · GIVE IT A POKE',
-    slogan: 'Programmer by day, Phantom Thief by night',
-    sloganDay: 'Programmer by day,',
+    slogan: 'Genius programmer by day, Phantom Thieves of Hearts by night',
+    sloganDay: 'Genius programmer by day,',
     tag1: 'DISTRIBUTED SYSTEMS',
     tag2: 'STORAGE',
     tag3: 'INFRA',
     tags: 'DISTRIBUTED SYSTEMS · STORAGE · INFRA',
     footSmall: '© 2026 cocofhu · DISTRIBUTED SYSTEMS · STORAGE · INFRA',
-    sloganNight: 'Phantom Thief by night',
-    sloganBig: 'Phantom Thief',
+    sloganNight: 'Phantom Thieves of Hearts by night',
+    sloganBig: 'Phantom Thieves',
     thiefAria: 'Phantom thief cat: tap for a calling card',
     thiefKicker: 'CALLING CARD',
     thiefMsg: 'The Phantom Gamer was here',
     thiefSign: '— Phantom Cat',
     thiefHint: 'open →',
     ccClose: 'Close',
-    cc: { title: 'CALLING CARD', lines: ["To whoever's reading:", 'Programmer by day, Phantom Thief by night.', ["Tonight, I'll ", ['steal'], ' a little of your ', ['time'], '.']], sign: '— Phantom Cat, cocofhu' },
+    cc: { title: 'CALLING CARD', lines: ["To whoever's reading:", 'Genius programmer by day, Phantom Thieves of Hearts by night.', ["Tonight, I'll ", ['steal'], ' a little of your ', ['time'], '.']], sign: '— Phantom Cat, cocofhu' },
     scrollAria: 'Scroll down',
     chRecent: 'Lately',
     chAbout: 'About',
@@ -115,22 +123,17 @@
       mk('desktop app', "Works on Mac and Windows, but it's a bit chunky. Still figuring out how to slim it down") +
       ' so I can edit the site right from there.',
     welcome: 'Welcome!',
-    gotIt: 'Got it!',
-    c3t: 'Workhorse bot',
-    c3p: 'Right now, ' + mk('agents like', 'Not great: clunky to use, and the context gets mixed up across tasks') +
-      " Open Claw and Hermes have zero sense of service while they work. You only get " +
-      mk('feedback', 'It should act like a person: "Got it!"') + " once they're done, and I have no way to " +
-      mk('see progress', "What's on your plate, how's it going, stop xxxx for now, tweak xxxx") +
-      '. I want mine to say ' + mk('"got it"', 'GPT Live does this pretty well') +
-      ' first, then send sub-agents off to do the work, let me jump in and change things midway, and run ' +
-      mk('tasks in parallel', 'Hi, Jarvis!') + '.',
+    c3t: 'AI hardware',
+    c3p: "Lately it feels like I've kind of hit the ceiling with software, so I want to try building some AI hardware: a " + mk('robot arm', 'Might be too hard') + ' and a ' + mk('desk robot', 'Tells me walkthrough tips while I game') + ". Not sure if AI can spark some ideas for me in embedded.",
     c4t: 'Anime &amp; games',
     c4p: 'Just beat the ' + mk('Xenoblade Chronicles 2', "I'm a pro!") + ' remaster, and now I&rsquo;m waiting for the ' +
       mk('Xenoblade Chronicles 3', "Bought it at launch but never got into it. Finishing it this time for sure") +
       ' one. Also watching some ' + mk('anime', 'Mushoku Tensei, Though I Am an Inept Villainess') + '.',
     c5t: 'Writing something, as a human',
     c5p: mk('Write something', "I used to blog back in school. Haven't in ages") + ' and post it on a few blogging sites.',
-    mystery: 'A person of mystery',
+    mystery: 'Writing code all day? Sounds so boring.',
+    kqTag: mk('125x leverage, all in', 'Go watch FX Fighter Kurumi-chan (FX戦士くるみちゃん)'),
+    mysteryBy: '— Kurumi Cat',
     mysterySub: "Born '99 · INTP · Backend engineer",
     graspSub: 'A visual workflow for multiple coding agents · open source',
     buddyAria: 'Back to top',
@@ -155,12 +158,12 @@
     });
   });
   Array.prototype.forEach.call(chapters, function (h) { ZH[h.getAttribute('data-chapter')] = h.textContent.trim(); });
-  ZH.slogan = ZH.slogan || '白天是程序员 · 晚上是怪盗';
-  ZH.sloganDay = '白天是程序员 ·';
-  ZH.sloganNight = '晚上是怪盗';
-  ZH.sloganBig = '怪盗';
+  ZH.slogan = ZH.slogan || '白天是天才程序员 · 晚上是偷心怪盗团';
+  ZH.sloganDay = '白天是天才程序员 ·';
+  ZH.sloganNight = '晚上是偷心怪盗团';
+  ZH.sloganBig = '偷心怪盗团';
   ZH.tags = '分布式系统 · 存储 · 基础设施';
-  ZH.cc = { title: '预告信', lines: ['致来访的你：', '白天我写代码，晚上我是怪盗。', ['今晚，我将', ['偷走'], '你的一点点', ['时间'], '。']], sign: '—— 怪盗猫 cocofhu' };
+  ZH.cc = { title: '预告信', lines: ['致来访的你：', '白天是天才程序员，晚上是偷心怪盗团。', ['今晚，我将', ['偷走'], '你的一点点', ['时间'], '。']], sign: '—— 怪盗猫 cocofhu' };
 
   function fillTape(el, text, n) {
     var s = '';
