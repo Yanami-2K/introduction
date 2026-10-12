@@ -43,32 +43,35 @@
         '<g class="c-card"><rect class="k" stroke-width="3" x="22" y="102" width="26" height="40" rx="5" fill="#3b2f4a"/><rect x="26" y="107" width="18" height="28" rx="2" fill="#fffdf9"/><path d="M30 126V117M35 122V112M40 116V110" stroke-width="4" stroke-linecap="round" stroke="#5fd3bc"/><path d="M35 122V126" stroke-width="4" stroke-linecap="round" stroke="#ff9db5"/></g>' +
         '<circle class="k" cx="50" cy="132" r="8" fill="#ffe3ec"/>',
       fx: star(30, 46, '#ffd36e', 's1') + star(172, 38, '#9fe3ff', 's2') + star(174, 124, '#ff9db5', 's3') },
-    // 奶龙-ish cat (original): chubby cream-yellow little dragon, tiny horns, belly
-    nailong: { body: BODY_ROUND, fill: '#ffe48a', face: eyesBig + '<path ' + S + 'd="M90 124 Q100 136 110 124 Z" fill="#ff9db5"/>',
-      extra: '<ellipse class="k" stroke-width="3" cx="100" cy="146" rx="24" ry="12" fill="#fff6d6"/>' +
-        '<path class="k" stroke-width="3" d="M88 74 l4 -14 6 13z M112 74 l-4 -14 -6 13z" fill="#fff6d6"/>' +
-        '<path class="k" stroke-width="3" d="M142 96 l10 4 -9 6 9 6 -9 6" fill="#ffd36e"/>',
+    // Nailong-style cat (original drawing): round bright-yellow blob, big cream belly, tiny dot eyes, huge open grin
+    nailong: { body: 'M56 160 Q48 110 58 84 L64 60 L82 72 Q100 64 118 72 L136 60 L142 84 Q152 110 144 160 Q128 166 100 166 Q72 166 56 160Z', fill: '#ffd84a',
+      face: '<g class="c-eyes"><g class="c-eye"><ellipse cx="80" cy="100" rx="5" ry="6" fill="' + INK + '"/></g><g class="c-eye"><ellipse cx="120" cy="100" rx="5" ry="6" fill="' + INK + '"/></g></g>' +
+        '<path class="k" stroke-width="3.5" d="M74 112 Q100 110 126 112 Q122 140 100 142 Q78 140 74 112Z" fill="#fff"/><path d="M84 130 Q100 124 116 130 Q110 140 100 141 Q90 140 84 130Z" fill="#ff8fa3"/>',
+      extra: '<path class="k" stroke-width="3" d="M78 156 Q100 148 122 156 Q116 164 100 164 Q84 164 78 156Z" fill="#fff6d2"/>',
       fx: star(30, 50, '#ffd36e', 's1') + star(172, 128, '#ffd36e', 's3') },
-    // gugugaga (original): cat in a penguin onesie, white face patch, orange beak + feet
-    gugu: { body: BODY_POINTY, fill: '#4a3f5e',
-      face: '<path class="k" stroke-width="3" d="M66 116 Q66 88 100 88 Q134 88 134 116 Q134 150 100 152 Q66 150 66 116Z" fill="#fffdf9"/>' +
-        '<g class="c-eyes"><g class="c-eye"><circle cx="86" cy="110" r="6" fill="' + INK + '"/><circle cx="88" cy="107" r="2" fill="#fff"/></g><g class="c-eye"><circle cx="114" cy="110" r="6" fill="' + INK + '"/><circle cx="116" cy="107" r="2" fill="#fff"/></g></g>' +
-        '<path class="k" stroke-width="3" d="M90 121 Q100 115 110 121 L100 132 Z" fill="#ffb347"/>',
-      extra: '<ellipse class="k" stroke-width="3" cx="84" cy="164" rx="10" ry="5" fill="#ffb347"/><ellipse class="k" stroke-width="3" cx="116" cy="164" rx="10" ry="5" fill="#ffb347"/>',
+    // gugugaga-style cat (original drawing): black penguin hood with orange beak on top, white face, straight black bangs, white belly, orange feet
+    gugu: { body: BODY_ROUND, fill: '#2e2440',
+      face: '<path class="k" stroke-width="3" d="M66 116 Q66 88 100 88 Q134 88 134 116 Q134 148 100 150 Q66 148 66 116Z" fill="#fffdf9"/>' +
+        '<path d="M68 108 Q70 90 100 89 Q130 90 132 108 L124 102 L118 109 L110 101 L100 108 L90 101 L82 109 L76 102Z" fill="#2e2440"/>' +
+        '<g class="c-eyes"><g class="c-eye"><circle cx="86" cy="118" r="7.5" fill="' + INK + '"/><circle cx="88.5" cy="115" r="2.6" fill="#fff"/></g><g class="c-eye"><circle cx="114" cy="118" r="7.5" fill="' + INK + '"/><circle cx="116.5" cy="115" r="2.6" fill="#fff"/></g></g>' +
+        '<path ' + S + 'stroke-width="3" d="M95 133 Q100 138 105 133" fill="#ff8fa3"/>',
+      extra: '<path class="k" stroke-width="3" d="M80 78 Q100 62 120 78 L100 98 Z" fill="#ffa940"/><path d="M84 79 Q100 72 116 79" stroke="' + INK + '" stroke-width="2.5" fill="none"/><circle class="k" stroke-width="2.5" cx="72" cy="84" r="4.5" fill="#fff"/><circle class="k" stroke-width="2.5" cx="128" cy="84" r="4.5" fill="#fff"/>' +
+        '<ellipse class="k" stroke-width="3" cx="84" cy="164" rx="11" ry="5" fill="#ffa940"/><ellipse class="k" stroke-width="3" cx="116" cy="164" rx="11" ry="5" fill="#ffa940"/>',
       fx: star(30, 50, '#9fe3ff', 's1') + star(172, 40, '#fffdf9', 's2') },
-    // Furby-ish cat (original): fluffy purple, ear tufts, big ringed eyes, little beak, pink belly
-    furby: { body: BODY_POINTY, fill: '#d9c6ff',
-      face: '<g class="c-eyes"><g class="c-eye"><circle class="k" stroke-width="3" cx="83" cy="108" r="12" fill="#fff"/><circle cx="83" cy="109" r="7" fill="' + INK + '"/><circle cx="86" cy="105" r="2.6" fill="#fff"/></g><g class="c-eye"><circle class="k" stroke-width="3" cx="117" cy="108" r="12" fill="#fff"/><circle cx="117" cy="109" r="7" fill="' + INK + '"/><circle cx="120" cy="105" r="2.6" fill="#fff"/></g></g>' +
-        '<path class="k" stroke-width="3" d="M93 124 Q100 120 107 124 L100 134 Z" fill="#ffd36e"/>',
-      extra: '<ellipse class="k" stroke-width="3" cx="100" cy="148" rx="20" ry="10" fill="#ffd1e3"/>' +
-        '<path class="k" stroke-width="3" d="M66 58 q-8 -14 -2 -24 q4 10 10 8 q-2 10 -8 16z M134 58 q8 -14 2 -24 q-4 10 -10 8 q2 10 8 16z" fill="#ff9db5"/>' +
-        '<path d="M62 90 l6 4 M60 100 l7 2 M138 90 l-6 4 M140 100 l-7 2" stroke="' + INK + '" stroke-width="2.5" stroke-linecap="round"/>',
-      fx: star(30, 50, '#ff9db5', 's1') + star(172, 128, '#c9b8ff', 's3') },
-    // big chubby fish cat (original): blue fish costume, dorsal fin, scales, side fin
-    fish: { body: BODY_WIDE, fill: '#9fd8ff', face: eyesBig + '<ellipse ' + S + 'stroke-width="3" cx="100" cy="128" rx="6" ry="5" fill="#ff9db5"/>',
-      extra: '<path class="k" stroke-width="3" d="M80 74 Q100 40 122 74 Q110 66 100 70 Q90 66 80 74Z" fill="#c9e9ff"/>' +
-        '<path d="M70 146 q6 -6 12 0 M88 146 q6 -6 12 0 M106 146 q6 -6 12 0 M124 146 q6 -6 12 0 M79 136 q6 -6 12 0 M97 136 q6 -6 12 0 M115 136 q6 -6 12 0" stroke="' + INK + '" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".55"/>' +
-        '<path class="k" stroke-width="3" d="M56 118 q-16 2 -18 16 q12 2 20 -6z" fill="#c9e9ff"/>',
+    // Furby-style cat (original drawing): fluffy, tall pointed ears with dark tips, huge eyes with pink lids, big orange two-part beak, white muzzle fluff
+    furby: { body: 'M56 160 L58 100 Q52 88 60 84 L54 34 L84 72 Q100 66 116 72 L146 34 L140 84 Q148 88 142 100 L144 160 Q131 150 121 162 Q110 150 100 162 Q90 150 79 162 Q69 150 58 160Z', fill: '#c9b3ff',
+      face: '<path class="k" stroke-width="3" d="M70 118 L64 128 L74 130 L70 142 L84 138 L92 150 L100 140 L108 150 L116 138 L130 142 L126 130 L136 128 L130 118 Q100 104 70 118Z" fill="#fffdf9"/>' +
+        '<g class="c-eyes"><g class="c-eye"><circle class="k" stroke-width="3" cx="82" cy="104" r="14" fill="#fff"/><circle cx="82" cy="106" r="9" fill="#5fd3bc"/><circle cx="82" cy="106" r="5" fill="' + INK + '"/><circle cx="85" cy="102" r="2.6" fill="#fff"/></g><g class="c-eye"><circle class="k" stroke-width="3" cx="118" cy="104" r="14" fill="#fff"/><circle cx="118" cy="106" r="9" fill="#5fd3bc"/><circle cx="118" cy="106" r="5" fill="' + INK + '"/><circle cx="121" cy="102" r="2.6" fill="#fff"/></g></g>' +
+        '<path class="k" stroke-width="3" d="M68 98 Q82 84 96 98 Q82 92 68 98Z M104 98 Q118 84 132 98 Q118 92 104 98Z" fill="#ff9db5"/>' +
+        '<path class="k" stroke-width="3" d="M88 120 Q100 110 112 120 Q106 126 100 127 Q94 126 88 120Z" fill="#ffa940"/><path class="k" stroke-width="3" d="M92 127 Q100 124 108 127 Q104 136 100 136 Q96 136 92 127Z" fill="#ffc46b"/>',
+      extra: '<path d="M54 34 L62 46 L66 40Z M146 34 L138 46 L134 40Z" fill="#5a4d6b"/><path class="k" stroke-width="3" d="M94 72 Q98 58 100 70 Q104 56 106 72" fill="#c9b3ff"/>',
+      fx: star(30, 50, '#ff9db5', 's1') + star(172, 128, '#5fd3bc', 's3') },
+    // big fat fish = DeepSeek-style blue whale cat (original drawing): chubby blue whale body, light belly, upturned whale fluke, water spout
+    fish: { body: 'M50 150 Q42 112 56 90 L62 58 L84 74 Q100 68 116 74 L138 58 L144 90 Q160 112 152 150 Q140 166 100 166 Q60 166 50 150Z', fill: '#5b7cfa',
+      face: eyesBig + '<path ' + S + 'd="M92 124 Q96 130 100 124 Q104 130 108 124" fill="none"/>',
+      extra: '<path class="k" stroke-width="3" d="M62 140 Q100 126 140 140 Q134 160 100 162 Q66 160 62 140Z" fill="#dfe6ff"/>' +
+        '<path class="k" stroke-width="3" d="M150 120 Q166 110 164 88 Q176 80 186 86 Q178 92 172 92 Q178 100 176 110 Q170 102 166 100 Q162 118 150 128Z" fill="#5b7cfa"/>' +
+        '<path d="M100 58 Q100 44 92 38 M100 58 Q100 44 108 38 M100 58 L100 40" stroke="#9fe3ff" stroke-width="4" stroke-linecap="round" fill="none"/>',
       fx: '<circle class="c-bub b0" cx="70" cy="170" r="5" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b1" cx="100" cy="170" r="7" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/><circle class="c-bub b2" cx="130" cy="170" r="4" fill="#fff" stroke="' + INK + '" stroke-width="2.5"/>' },
     // phantom thief cat (original): domino mask, tailcoat, red bow + glove, tiny top hat, calling card
     kaito: { body: BODY_POINTY, fill: '#fffaf4',
