@@ -385,39 +385,14 @@
       sayKey = fi; say.textContent = tr().tf[fi];
       say.classList.remove('pop-say'); void say.offsetWidth; say.classList.add('pop-say');
     }
-    var smearBox = null;
-    function smearOn() {
-      if (!document.getElementById('tfHBlur')) {
-        var d = document.createElement('div');
-        d.innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="tfHBlur" x="-60%" y="-10%" width="220%" height="120%"><feGaussianBlur stdDeviation="9 0"/></filter></svg>';
-        document.body.appendChild(d.firstChild);
-      }
-      smearBox = document.createElement('span');
-      smearBox.className = 'tf-smear';
-      var h = '';
-      for (var k = 0; k < 4; k++) h += '<span class="tf-ghost" style="--k:' + k + '">' + slot.innerHTML + '</span>';
-      h += '<i class="tf-streak" style="--y:30%;--k:0"></i><i class="tf-streak" style="--y:52%;--k:1"></i><i class="tf-streak" style="--y:72%;--k:2"></i>';
-      smearBox.innerHTML = h;
-      heroCat.appendChild(smearBox);
-      heroCat.classList.add('tf-fast');
-    }
-    function smearSwap() {
-      if (smearBox) Array.prototype.forEach.call(smearBox.querySelectorAll('.tf-ghost'), function (g) { g.innerHTML = slot.innerHTML; });
-    }
-    function smearOff() {
-      heroCat.classList.remove('tf-fast');
-      if (smearBox) { smearBox.remove(); smearBox = null; }
-    }
     heroCat.addEventListener('click', function () {
       heroCat.classList.add('tf');
       if (reduce) { swap(); return; }
       if (busy) return;
       busy = true;
       heroCat.classList.remove('tf-go'); void heroCat.offsetWidth; heroCat.classList.add('tf-go');
-      setTimeout(smearOn, 170);
-      setTimeout(function () { swap(); smearSwap(); }, 500);
-      setTimeout(smearOff, 780);
-      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 1130);
+      setTimeout(swap, 400);
+      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 900);
     });
   }
   function burst(host, n) {
