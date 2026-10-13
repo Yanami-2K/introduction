@@ -137,7 +137,7 @@
     graspSub: 'A visual workflow for multiple coding agents · open source',
     buddyAria: 'Back to top',
     lines: ['Hi there~', "I'm cocofhu's little ghost", 'Heading out on a heist tonight~', 'Poke me again?', 'Working on SkillHub~', 'Whoosh—'],
-    tf: ['Back to me~ Working on SkillHub!', 'coco 卡酷一', 'All in! All in!', 'Transform! Night-sky Cat', 'Transform! Sakura Cat', 'Transform! Soda Cat', 'Transform! Sleepy Cat'],
+    tf: ['Back to me~ Working on SkillHub!', 'coco, Phantom Thief!', 'All in! All in!', 'Transform! Night-sky Cat', 'Transform! Sakura Cat', 'Transform! Soda Cat', 'Transform! Sleepy Cat'],
     sections: { recent: "What I'm up to~", about: 'Say hi!' },
     langAria: 'Switch language / 切换语言'
   };
