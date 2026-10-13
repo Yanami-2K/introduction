@@ -253,6 +253,13 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
 .say.pop-say{animation:say-in .5s var(--pop) forwards !important}
 @keyframes say-in{0%{opacity:0;transform:scale(0) rotate(-12deg)}100%{opacity:1;transform:scale(1) rotate(-3deg)}}
 .js .hero-cat.tf .c-squash,.js:not(.rm).ready .hero-cat.tf .c-squash{animation:none;transform:none}
+/* click feel: no mouse/touch focus ring, quick press squash, no tap delay */
+.hero-cat{touch-action:manipulation;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+.hero-cat:focus{outline:none}
+.hero-cat:focus-visible{outline:2px dashed rgba(59,47,74,.45);outline-offset:-6px;border-radius:32px}
+.hero-cat>[data-cat]{transform-origin:50% 85%;transition:transform .32s cubic-bezier(.3,1.6,.5,1)}
+.hero-cat.pressed>[data-cat]{transform:scale(1.03,.95);transition:transform .09s cubic-bezier(.3,0,.5,1)}
+.rm .hero-cat>[data-cat]{transition:none}
 /* A: jelly squish — squash into a flat blob, wobble, pop up as the new form */
 .js .hero-cat.tf-go .c-squash{transform-origin:50% 100%;animation:tf-alt .9s forwards !important}
 @keyframes tf-alt{

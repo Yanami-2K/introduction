@@ -385,15 +385,26 @@
       sayKey = fi; say.textContent = tr().tf[fi];
       say.classList.remove('pop-say'); void say.offsetWidth; say.classList.add('pop-say');
     }
-    heroCat.addEventListener('click', function () {
-      heroCat.classList.add('tf');
-      if (reduce) { swap(); return; }
-      if (busy) return;
+    var pending = false;
+    function transform() {
       busy = true;
       heroCat.classList.remove('tf-go'); void heroCat.offsetWidth; heroCat.classList.add('tf-go');
       setTimeout(swap, 400);
-      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 900);
+      setTimeout(function () {
+        heroCat.classList.remove('tf-go'); busy = false;
+        if (pending) { pending = false; transform(); }
+      }, 900);
+    }
+    heroCat.addEventListener('click', function () {
+      heroCat.classList.add('tf');
+      if (reduce) { swap(); return; }
+      if (busy) { pending = true; return; } // queue at most one more transform
+      transform();
     });
+    /* instant press feedback (mouse / touch / pen), independent of the transform */
+    function release() { heroCat.classList.remove('pressed'); }
+    heroCat.addEventListener('pointerdown', function (e) { if (e.button === 0 || e.pointerType !== 'mouse') heroCat.classList.add('pressed'); });
+    ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(function (t) { heroCat.addEventListener(t, release); });
   }
   function burst(host, n) {
     var colors = ['#ffd36e', '#9fe3ff', '#ff9db5', '#b8f3e6', '#c9b8ff'];
