@@ -260,18 +260,7 @@ html:not([data-lang="en"]) .tape--pink .tape-run span{font-family:var(--f-zh);fo
 .hero-cat>[data-cat]{transform-origin:50% 85%;transition:transform .32s cubic-bezier(.3,1.6,.5,1)}
 .hero-cat.pressed>[data-cat]{transform:scale(1.03,.95);transition:transform .09s cubic-bezier(.3,0,.5,1)}
 .rm .hero-cat>[data-cat]{transition:none}
-/* A: jelly squish — squash into a flat blob, wobble, pop up as the new form */
-.js .hero-cat.tf-go .c-squash{transform-origin:50% 100%;animation:tf-alt .9s forwards !important}
-@keyframes tf-alt{
-  0%{transform:none;animation-timing-function:cubic-bezier(.3,0,.5,1)}
-  14%{transform:scale(1.08,.9);animation-timing-function:cubic-bezier(.5,0,.75,.3)}
-  32%{transform:scale(1.42,.3);animation-timing-function:cubic-bezier(.4,0,.6,1)}
-  38%{transform:scale(1.34,.36);animation-timing-function:cubic-bezier(.4,0,.6,1)}
-  44%{transform:scale(1.4,.3);animation-timing-function:cubic-bezier(.2,.7,.3,1)}
-  62%{transform:translateY(-7%) scale(.88,1.14);animation-timing-function:cubic-bezier(.5,0,.6,1)}
-  76%{transform:scale(1.07,.93);animation-timing-function:cubic-bezier(.4,0,.6,1)}
-  88%{transform:scale(.98,1.02)}
-  100%{transform:none}}
+.hero-cat .c-squash{transform-origin:50% 100%}
 .stage-hint{position:absolute;left:0;right:0;bottom:30px;margin:0;text-align:center;font:600 12px/1 var(--f-zh);letter-spacing:.2em;opacity:.55}
 .spark-p{position:absolute;left:50%;top:45%;width:14px;height:14px;border:2.5px solid var(--ink);border-radius:4px;pointer-events:none;z-index:5;animation:spark .85s var(--io) forwards}
 @keyframes spark{0%{transform:translate(-50%,-50%) scale(.2) rotate(0)}60%{opacity:1}100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1) rotate(var(--r));opacity:0}}
