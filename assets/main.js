@@ -360,7 +360,7 @@
   if (say) say.textContent = tr().lines[0];
   /* click = magical-girl transform: ghost cat cycles through forms and back */
   var FORMS = ['yume', 'kaito', 'kurumi', 'yozora', 'sakura', 'soda', 'nemu'];
-  var fi = 0, sayKey = null, busy = false;
+  var fi = 0, sayKey = null;
   onLangChange.push(function (T) { if (say) say.textContent = sayKey === null ? T.lines[li] : T.tf[sayKey]; });
   if (heroCat) {
     var eyes = heroCat.querySelector('.c-eyes');
@@ -385,15 +385,36 @@
       sayKey = fi; say.textContent = tr().tf[fi];
       say.classList.remove('pop-say'); void say.offsetWidth; say.classList.add('pop-say');
     }
-    heroCat.addEventListener('click', function () {
+    /* jelly transform driven by a spring: press -> squash, swap at the bottom, spring back up (~350ms).
+       A new press mid-flight retargets from the current state, no waiting. */
+    var sx = 0, sv = 0, target = 0, swapArmed = false, raf = 0, last = 0;
+    var K = 1100, C = 30;
+    function squashEl() { return slot.querySelector('.c-squash'); }
+    function paint() {
+      var el = squashEl(); if (!el) return;
+      if (sx === 0 && target === 0) { el.style.transform = ''; return; }
+      var ty = sx < 0 ? sx * 28 : 0;
+      el.style.transform = 'translateY(' + ty.toFixed(2) + '%) scale(' + (1 + 0.4 * sx).toFixed(4) + ',' + (1 - 0.62 * sx).toFixed(4) + ')';
+    }
+    function step(now) {
+      var dt = Math.min(0.032, (now - last) / 1000 || 0.016); last = now;
+      for (var i = 0; i < 4; i++) { var a = K * (target - sx) - C * sv; sv += a * dt / 4; sx += sv * dt / 4; }
+      if (swapArmed && sx >= 0.78) { swapArmed = false; swap(); target = 0; }
+      if (target === 0 && Math.abs(sx) < 0.003 && Math.abs(sv) < 0.08) { sx = 0; sv = 0; paint(); raf = 0; return; }
+      paint(); raf = requestAnimationFrame(step);
+    }
+    function transform() {
       heroCat.classList.add('tf');
       if (reduce) { swap(); return; }
-      if (busy) return;
-      busy = true;
-      heroCat.classList.remove('tf-go'); void heroCat.offsetWidth; heroCat.classList.add('tf-go');
-      setTimeout(swap, 400);
-      setTimeout(function () { heroCat.classList.remove('tf-go'); busy = false; }, 900);
-    });
+      target = 1; swapArmed = true;
+      if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); }
+    }
+    heroCat.addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' && e.button !== 0) return; transform(); });
+    heroCat.addEventListener('click', function (e) { if (e.detail === 0) transform(); }); // keyboard (Enter / Space)
+    /* instant press feedback (mouse / touch / pen), independent of the transform */
+    function release() { heroCat.classList.remove('pressed'); }
+    heroCat.addEventListener('pointerdown', function (e) { if (e.button === 0 || e.pointerType !== 'mouse') heroCat.classList.add('pressed'); });
+    ['pointerup', 'pointercancel', 'pointerleave', 'blur'].forEach(function (t) { heroCat.addEventListener(t, release); });
   }
   function burst(host, n) {
     var colors = ['#ffd36e', '#9fe3ff', '#ff9db5', '#b8f3e6', '#c9b8ff'];
